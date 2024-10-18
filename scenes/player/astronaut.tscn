@@ -1,0 +1,462 @@
+[gd_scene load_steps=31 format=2]
+
+[ext_resource path="res://scripts/player/astronaut.gd" type="Script" id=1]
+[ext_resource path="res://assets/resources/player/particles/default.tscn" type="PackedScene" id=2]
+[ext_resource path="res://assets/sprites/player/skins/astronaut.png" type="Texture" id=3]
+[ext_resource path="res://scenes/ui/player_interface/player_user_interface.tscn" type="PackedScene" id=4]
+[ext_resource path="res://assets/sprites/light/player_light.png" type="Texture" id=5]
+[ext_resource path="res://assets/shaders/unshaded.tres" type="Material" id=6]
+[ext_resource path="res://assets/resources/fonts/dynamic_font.tres" type="DynamicFont" id=7]
+[ext_resource path="res://scenes/ui/player_interface/transitions.tscn" type="PackedScene" id=8]
+[ext_resource path="res://scenes/ui/player_interface/joystick.tscn" type="PackedScene" id=9]
+[ext_resource path="res://assets/audio/sfx/player/walking.wav" type="AudioStream" id=10]
+
+[sub_resource type="Shader" id=40]
+code = "shader_type canvas_item;
+
+uniform float whiteness : hint_range(0.0, 1.0) = 0.0;
+
+void fragment() {
+    vec4 tex_color = texture(TEXTURE, UV);
+    vec3 white_color = vec3(1.0, 1.0, 1.0);
+    COLOR = mix(tex_color, vec4(white_color, tex_color.a), whiteness);
+}
+"
+
+[sub_resource type="ShaderMaterial" id=41]
+shader = SubResource( 40 )
+shader_param/whiteness = 0.0
+
+[sub_resource type="RectangleShape2D" id=38]
+extents = Vector2( 5, 8 )
+
+[sub_resource type="Animation" id=8]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:texture_scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 1.0 ]
+}
+
+[sub_resource type="Animation" id=9]
+resource_name = "light_pulse"
+length = 2.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:texture_scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 1, 2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.2, 0.25 ]
+}
+
+[sub_resource type="Animation" id=25]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Audio/Footsteps:playing")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("astronaut:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 43 ]
+}
+
+[sub_resource type="Animation" id=28]
+resource_name = "attack_1"
+length = 0.4
+step = 0.025
+tracks/0/type = "value"
+tracks/0/path = NodePath("astronaut:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.175, 0.25, 0.35, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 28, 29, 30, 31, 32, 33 ]
+}
+
+[sub_resource type="Animation" id=29]
+resource_name = "attack_2"
+length = 0.4
+step = 0.01
+tracks/0/type = "value"
+tracks/0/path = NodePath("astronaut:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.17, 0.25, 0.35, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 35, 36, 37, 38, 39, 40 ]
+}
+
+[sub_resource type="Animation" id=30]
+resource_name = "attack_3"
+length = 0.4
+step = 0.01
+tracks/0/type = "value"
+tracks/0/path = NodePath("astronaut:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.07, 0.14, 0.21, 0.28, 0.35 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 42, 43, 44, 45, 46, 47 ]
+}
+
+[sub_resource type="Animation" id=31]
+resource_name = "attack_4"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("astronaut:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 35, 36, 37, 38, 39 ]
+}
+
+[sub_resource type="Animation" id=32]
+resource_name = "die"
+tracks/0/type = "value"
+tracks/0/path = NodePath("astronaut:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 22, 23, 24, 25 ]
+}
+
+[sub_resource type="Animation" id=35]
+resource_name = "fall"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath("astronaut:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 17, 18 ]
+}
+
+[sub_resource type="Animation" id=26]
+resource_name = "idle"
+length = 0.9
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("astronaut:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2 ]
+}
+
+[sub_resource type="Animation" id=36]
+resource_name = "jump"
+length = 0.2
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("astronaut:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 14, 15 ]
+}
+
+[sub_resource type="Animation" id=27]
+resource_name = "running"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/path = NodePath("astronaut:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 8, 9, 10, 11, 12, 7 ]
+}
+
+[sub_resource type="Animation" id=33]
+resource_name = "wall_jump"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/path = NodePath("astronaut:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 42, 43, 44, 45 ]
+}
+
+[sub_resource type="Animation" id=34]
+resource_name = "wall_slide"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath("astronaut:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 20 ]
+}
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 2, 6 )
+
+[sub_resource type="CircleShape2D" id=39]
+radius = 11.0
+
+[sub_resource type="Animation" id=42]
+resource_name = "hitAnim"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:material:shader_param/whiteness")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, 1.0, 0.0 ]
+}
+
+[node name="astronaut" type="KinematicBody2D" groups=["player"]]
+pause_mode = 1
+self_modulate = Color( 0, 0, 0, 1 )
+light_mask = 2
+material = SubResource( 41 )
+z_index = 4
+collision_layer = 34950
+collision_mask = 34945
+script = ExtResource( 1 )
+jump_height = 55.0
+jump_time_to_peak = 0.3
+jump_time_to_descent = 0.3
+
+[node name="Player_collision" type="CollisionShape2D" parent="."]
+position = Vector2( 1, 0 )
+shape = SubResource( 38 )
+
+[node name="Light2D" type="Light2D" parent="."]
+scale = Vector2( 10, 10 )
+texture = ExtResource( 5 )
+energy = 0.75
+range_item_cull_mask = 3
+shadow_filter = 5
+shadow_filter_smooth = 50.0
+
+[node name="light_pulse" type="AnimationPlayer" parent="."]
+root_node = NodePath("../Light2D")
+anims/RESET = SubResource( 8 )
+anims/light_pulse = SubResource( 9 )
+
+[node name="astronaut" type="Sprite" parent="."]
+light_mask = 2
+material = ExtResource( 6 )
+use_parent_material = true
+texture = ExtResource( 3 )
+hframes = 7
+vframes = 7
+frame = 43
+
+[node name="player_animations" type="AnimationPlayer" parent="."]
+anims/RESET = SubResource( 25 )
+anims/attack_1 = SubResource( 28 )
+anims/attack_2 = SubResource( 29 )
+anims/attack_3 = SubResource( 30 )
+anims/attack_4 = SubResource( 31 )
+anims/die = SubResource( 32 )
+anims/fall = SubResource( 35 )
+anims/idle = SubResource( 26 )
+anims/jump = SubResource( 36 )
+anims/running = SubResource( 27 )
+anims/wall_jump = SubResource( 33 )
+anims/wall_slide = SubResource( 34 )
+
+[node name="player_cam" type="Camera2D" parent="."]
+visible = false
+current = true
+zoom = Vector2( 0.3, 0.3 )
+limit_left = -15
+limit_top = -10
+limit_right = 912
+limit_bottom = 780
+drag_margin_h_enabled = true
+drag_margin_v_enabled = true
+smoothing_enabled = true
+smoothing_speed = 7.0
+drag_margin_left = 0.1
+drag_margin_top = 0.1
+drag_margin_right = 0.1
+drag_margin_bottom = 0.1
+
+[node name="enddoorarea" type="Area2D" parent="."]
+collision_layer = 2
+
+[node name="enddoorcollision" type="CollisionShape2D" parent="enddoorarea"]
+shape = SubResource( 2 )
+
+[node name="enemy_hitbox" type="Area2D" parent="." groups=["attack"]]
+collision_layer = 2147483664
+collision_mask = 2147483656
+
+[node name="attackingcollision" type="CollisionShape2D" parent="enemy_hitbox" groups=["attack"]]
+position = Vector2( 5, 0 )
+shape = SubResource( 39 )
+disabled = true
+
+[node name="gem_raycasts" type="Node2D" parent="."]
+
+[node name="GemRaycast" type="RayCast2D" parent="gem_raycasts"]
+scale = Vector2( 0.5, 0.5 )
+enabled = true
+cast_to = Vector2( 32, 0 )
+
+[node name="WallRaycasts" type="Node2D" parent="."]
+
+[node name="LeftWallRaycasts" type="Node2D" parent="WallRaycasts"]
+
+[node name="LeftWallRaycast1" type="RayCast2D" parent="WallRaycasts/LeftWallRaycasts"]
+position = Vector2( 0, -5 )
+scale = Vector2( 0.25, 0.25 )
+enabled = true
+cast_to = Vector2( -32, 0 )
+
+[node name="LeftWallRaycast2" type="RayCast2D" parent="WallRaycasts/LeftWallRaycasts"]
+position = Vector2( 0, 5 )
+scale = Vector2( 0.25, 0.25 )
+enabled = true
+cast_to = Vector2( -32, 0 )
+
+[node name="RightWallRaycasts" type="Node2D" parent="WallRaycasts"]
+
+[node name="RightWallRaycast1" type="RayCast2D" parent="WallRaycasts/RightWallRaycasts"]
+position = Vector2( 0, -5 )
+scale = Vector2( 0.25, 0.25 )
+enabled = true
+cast_to = Vector2( 32, 0 )
+
+[node name="RightWallRaycast2" type="RayCast2D" parent="WallRaycasts/RightWallRaycasts"]
+position = Vector2( 0, 5 )
+scale = Vector2( 0.25, 0.25 )
+enabled = true
+cast_to = Vector2( 32, 0 )
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="joystick" parent="CanvasLayer" instance=ExtResource( 9 )]
+
+[node name="player_ui" parent="CanvasLayer" instance=ExtResource( 4 )]
+
+[node name="particles" type="Node2D" parent="."]
+position = Vector2( 0, 5 )
+
+[node name="particles" parent="particles" instance=ExtResource( 2 )]
+
+[node name="playerstate" type="Label" parent="."]
+visible = false
+margin_left = -21.0
+margin_top = -24.0
+margin_right = 20.0
+margin_bottom = -10.0
+custom_fonts/font = ExtResource( 7 )
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Audio" type="Node2D" parent="."]
+
+[node name="Footsteps" type="AudioStreamPlayer" parent="Audio"]
+stream = ExtResource( 10 )
+volume_db = 10.0
+
+[node name="Timer" type="Timer" parent="Audio/Footsteps"]
+wait_time = 0.1
+one_shot = true
+
+[node name="hitAnim" type="AnimationPlayer" parent="."]
+anims/hitAnim = SubResource( 42 )
+
+[node name="transitionLayer" parent="." instance=ExtResource( 8 )]
+
+[connection signal="tree_entered" from="." to="." method="_on_astronaut_tree_entered"]
+[connection signal="tree_exited" from="." to="." method="_on_astronaut_tree_exited"]
+[connection signal="animation_finished" from="player_animations" to="." method="_on_player_animations_animation_finished"]
+[connection signal="animation_started" from="player_animations" to="." method="_on_player_animations_animation_started"]
+[connection signal="area_entered" from="enddoorarea" to="." method="_on_enddoorarea_area_entered"]
+[connection signal="area_exited" from="enddoorarea" to="." method="_on_enddoorarea_area_exited"]
+[connection signal="body_entered" from="enemy_hitbox" to="." method="_on_enemy_hitbox_body_entered"]

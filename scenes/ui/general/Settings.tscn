@@ -1,0 +1,773 @@
+[gd_scene load_steps=45 format=2]
+
+[ext_resource path="res://debugging/settings/buttons/resume_pressed.png" type="Texture" id=1]
+[ext_resource path="res://debugging/settings/Settings.gd" type="Script" id=2]
+[ext_resource path="res://debugging/settings/buttons/settings_pressed.png" type="Texture" id=3]
+[ext_resource path="res://debugging/settings/pauseMenu.gd" type="Script" id=4]
+[ext_resource path="res://debugging/settings/buttons/quit.png" type="Texture" id=5]
+[ext_resource path="res://debugging/settings/buttons/credits.png" type="Texture" id=6]
+[ext_resource path="res://debugging/settings/buttons/quit_pressed.png" type="Texture" id=7]
+[ext_resource path="res://debugging/settings/buttons/credits_pressed.png" type="Texture" id=8]
+[ext_resource path="res://debugging/settings/buttons/resume.png" type="Texture" id=9]
+[ext_resource path="res://debugging/settings/buttons/settings.png" type="Texture" id=10]
+[ext_resource path="res://debugging/settings/menu_background.png" type="Texture" id=11]
+[ext_resource path="res://debugging/settings/buttons/paused.png" type="Texture" id=12]
+[ext_resource path="res://resources/themes/sidebar.tres" type="Theme" id=13]
+[ext_resource path="res://ui/gui/sidebar.png" type="Texture" id=14]
+[ext_resource path="res://debugging/settings/buttons/difficulty/difficulty.png" type="Texture" id=15]
+[ext_resource path="res://debugging/settings/buttons/change_button_layout.png" type="Texture" id=16]
+[ext_resource path="res://debugging/settings/buttons/theme/HSliderDisabled.png" type="Texture" id=17]
+[ext_resource path="res://debugging/settings/buttons/difficulty/reset_pressed.png" type="Texture" id=18]
+[ext_resource path="res://debugging/settings/buttons/theme/HSliderbg.png" type="Texture" id=19]
+[ext_resource path="res://debugging/settings/buttons/difficulty/reset_disabled.png" type="Texture" id=20]
+[ext_resource path="res://debugging/settings/buttons/theme/HSlider.png" type="Texture" id=21]
+[ext_resource path="res://debugging/settings/buttons/difficulty/reset.png" type="Texture" id=22]
+[ext_resource path="res://debugging/settings/buttons/audio/audio.png" type="Texture" id=23]
+[ext_resource path="res://debugging/settings/DevConsole.gd" type="Script" id=24]
+[ext_resource path="res://resources/shaders/Settings.tres" type="Material" id=25]
+[ext_resource path="res://debugging/settings/buttons/audio/music.png" type="Texture" id=26]
+[ext_resource path="res://debugging/settings/buttons/change_button_layout_pressed.png" type="Texture" id=27]
+[ext_resource path="res://debugging/settings/buttons/buttonPositions/x.png" type="Texture" id=28]
+[ext_resource path="res://debugging/settings/buttons/buttonPositions/tick.png" type="Texture" id=29]
+[ext_resource path="res://debugging/settings/buttons/general/difficulty.png" type="Texture" id=30]
+
+[sub_resource type="Animation" id=2]
+resource_name = "expand_panel"
+length = 0.5
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("Control/Background:rect_size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 100, 150 ), Vector2( 250, 150 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Control/Background:rect_pivot_offset")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 50, 75 ), Vector2( 125, 75 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Control/Background:rect_position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 462, 225 ), Vector2( 387, 225 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Control/Background:rect_rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.0, 0.0 ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Control/First_Container:rect_position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 480, 215 ), Vector2( 255, 215 ) ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("..:rect_position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 0, 0 ) ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("..:rect_rotation")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.0, 0.0 ]
+}
+tracks/7/type = "value"
+tracks/7/path = NodePath("Control/Sidebar:modulate")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 0, 0.4, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/8/type = "value"
+tracks/8/path = NodePath("Control/Settings:modulate")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/keys = {
+"times": PoolRealArray( 0, 0.4, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/9/type = "value"
+tracks/9/path = NodePath("Control/Settings/VBoxContainer/DifficultyVBox/AttackSpeedHBox/AttackSpeedSlider:rect_position")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/keys = {
+"times": PoolRealArray( 0.5 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 131, 0 ) ]
+}
+tracks/10/type = "value"
+tracks/10/path = NodePath("Control/Settings/VBoxContainer/DifficultyVBox/AttackSpeedHBox/AttackSpeedSlider:rect_scale")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/keys = {
+"times": PoolRealArray( 0.5 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( -1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=30]
+resource_name = "fadeIn"
+length = 0.25
+tracks/0/type = "value"
+tracks/0/path = NodePath("Control:rect_position:y")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 1000.0, 0.0 ]
+}
+
+[sub_resource type="Animation" id=32]
+resource_name = "fadeOut"
+length = 0.25
+tracks/0/type = "value"
+tracks/0/path = NodePath("Control:rect_position:y")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.0, 1000.0 ]
+}
+
+[sub_resource type="Animation" id=1]
+resource_name = "open_credits"
+
+[sub_resource type="DynamicFontData" id=17]
+antialiased = false
+font_path = "res://resources/fonts/ThaleahFat.ttf"
+
+[sub_resource type="DynamicFont" id=28]
+outline_color = Color( 1, 0, 0, 1 )
+font_data = SubResource( 17 )
+
+[sub_resource type="Theme" id=27]
+
+[sub_resource type="DynamicFontData" id=16]
+antialiased = false
+font_path = "res://resources/fonts/ThaleahFat.ttf"
+
+[sub_resource type="DynamicFont" id=29]
+font_data = SubResource( 16 )
+
+[sub_resource type="StyleBoxTexture" id=18]
+texture = ExtResource( 19 )
+region_rect = Rect2( 0.264385, 0, 31.7356, 8 )
+margin_left = 3.34132
+margin_right = 3.2128
+
+[sub_resource type="StyleBoxEmpty" id=19]
+
+[sub_resource type="StyleBoxEmpty" id=20]
+
+[sub_resource type="DynamicFontData" id=21]
+antialiased = false
+font_path = "res://resources/fonts/ThaleahFat.ttf"
+
+[sub_resource type="DynamicFont" id=22]
+size = 15
+font_data = SubResource( 21 )
+
+[node name="PauseMenu" type="Control"]
+pause_mode = 2
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 4 )
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 2
+
+[node name="Colorrect" type="ColorRect" parent="CanvasLayer"]
+material = ExtResource( 25 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer"]
+anims/expand_panel = SubResource( 2 )
+anims/fadeIn = SubResource( 30 )
+anims/fadeOut = SubResource( 32 )
+anims/open_credits = SubResource( 1 )
+
+[node name="Control" type="Control" parent="CanvasLayer"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -512.0
+margin_top = 700.0
+margin_right = 512.0
+margin_bottom = 1300.0
+
+[node name="Background" type="NinePatchRect" parent="CanvasLayer/Control"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -125.0
+margin_top = -75.0
+margin_right = 125.0
+margin_bottom = 75.0
+rect_scale = Vector2( 3, 3 )
+rect_pivot_offset = Vector2( 125, 75 )
+texture = ExtResource( 11 )
+region_rect = Rect2( 0, 0, 48, 48 )
+patch_margin_left = 7
+patch_margin_top = 7
+patch_margin_right = 6
+patch_margin_bottom = 7
+axis_stretch_horizontal = 2
+axis_stretch_vertical = 2
+
+[node name="First_Container" type="VBoxContainer" parent="CanvasLayer/Control"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -257.0
+margin_top = -85.0
+margin_right = -193.0
+margin_bottom = 29.0
+rect_scale = Vector2( 3, 3 )
+rect_pivot_offset = Vector2( 32, 50 )
+
+[node name="UpperText" type="TextureRect" parent="CanvasLayer/Control/First_Container"]
+margin_right = 64.0
+margin_bottom = 25.0
+rect_min_size = Vector2( 64, 25 )
+texture = ExtResource( 12 )
+
+[node name="Resume" type="TextureButton" parent="CanvasLayer/Control/First_Container"]
+margin_top = 29.0
+margin_right = 64.0
+margin_bottom = 49.0
+rect_min_size = Vector2( 64, 20 )
+texture_normal = ExtResource( 9 )
+texture_pressed = ExtResource( 1 )
+
+[node name="Settings" type="TextureButton" parent="CanvasLayer/Control/First_Container"]
+margin_top = 53.0
+margin_right = 64.0
+margin_bottom = 73.0
+rect_min_size = Vector2( 64, 20 )
+texture_normal = ExtResource( 10 )
+texture_pressed = ExtResource( 3 )
+
+[node name="Credits" type="TextureButton" parent="CanvasLayer/Control/First_Container"]
+margin_top = 77.0
+margin_right = 64.0
+margin_bottom = 97.0
+rect_min_size = Vector2( 64, 20 )
+texture_normal = ExtResource( 6 )
+texture_pressed = ExtResource( 8 )
+
+[node name="Quit" type="TextureButton" parent="CanvasLayer/Control/First_Container"]
+margin_top = 101.0
+margin_right = 64.0
+margin_bottom = 114.0
+texture_normal = ExtResource( 5 )
+texture_pressed = ExtResource( 7 )
+
+[node name="Sidebar" type="TextureRect" parent="CanvasLayer/Control"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -97.0
+margin_top = -45.0
+margin_right = -96.0
+margin_bottom = 49.0
+rect_scale = Vector2( 4, 4 )
+rect_pivot_offset = Vector2( 0, 48 )
+texture = ExtResource( 14 )
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Settings" type="ScrollContainer" parent="CanvasLayer/Control"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -62.0
+margin_top = -180.0
+margin_right = 79.0
+margin_bottom = -60.0
+rect_min_size = Vector2( 135, 120 )
+rect_scale = Vector2( 3, 3 )
+theme = ExtResource( 13 )
+scroll_horizontal_enabled = false
+script = ExtResource( 2 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Control/Settings"]
+margin_right = 134.0
+margin_bottom = 266.0
+
+[node name="General" type="TextureRect" parent="CanvasLayer/Control/Settings/VBoxContainer"]
+margin_right = 134.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 0, 20 )
+texture = ExtResource( 30 )
+
+[node name="Button" type="TextureButton" parent="CanvasLayer/Control/Settings/VBoxContainer" groups=["editMode"]]
+margin_top = 24.0
+margin_right = 134.0
+margin_bottom = 37.0
+texture_normal = ExtResource( 16 )
+texture_pressed = ExtResource( 27 )
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Control/Settings/VBoxContainer"]
+margin_top = 41.0
+margin_right = 134.0
+margin_bottom = 56.0
+
+[node name="Label" type="Label" parent="CanvasLayer/Control/Settings/VBoxContainer/HBoxContainer"]
+margin_right = 61.0
+margin_bottom = 15.0
+custom_colors/font_color = Color( 0.917647, 0.164706, 0.32549, 1 )
+custom_fonts/font = SubResource( 28 )
+text = "Show FPS"
+
+[node name="Control" type="Control" parent="CanvasLayer/Control/Settings/VBoxContainer/HBoxContainer"]
+margin_left = 65.0
+margin_right = 90.0
+margin_bottom = 15.0
+rect_min_size = Vector2( 25, 0 )
+
+[node name="showFPS" type="TextureButton" parent="CanvasLayer/Control/Settings/VBoxContainer/HBoxContainer"]
+margin_left = 94.0
+margin_right = 107.0
+margin_bottom = 15.0
+rect_min_size = Vector2( 13, 13 )
+theme = SubResource( 27 )
+toggle_mode = true
+texture_normal = ExtResource( 28 )
+texture_pressed = ExtResource( 29 )
+
+[node name="AudioVBox" type="VBoxContainer" parent="CanvasLayer/Control/Settings/VBoxContainer"]
+margin_top = 60.0
+margin_right = 134.0
+margin_bottom = 117.0
+
+[node name="Audio" type="TextureRect" parent="CanvasLayer/Control/Settings/VBoxContainer/AudioVBox"]
+margin_right = 134.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 0, 20 )
+texture = ExtResource( 23 )
+
+[node name="GridContainer" type="GridContainer" parent="CanvasLayer/Control/Settings/VBoxContainer/AudioVBox"]
+margin_top = 24.0
+margin_right = 134.0
+margin_bottom = 57.0
+columns = 2
+
+[node name="Music" type="Label" parent="CanvasLayer/Control/Settings/VBoxContainer/AudioVBox/GridContainer"]
+margin_right = 65.0
+margin_bottom = 15.0
+rect_min_size = Vector2( 65, 0 )
+custom_colors/font_color = Color( 0.917647, 0.164706, 0.32549, 1 )
+custom_fonts/font = SubResource( 29 )
+text = "Music"
+align = 1
+
+[node name="SFX" type="Label" parent="CanvasLayer/Control/Settings/VBoxContainer/AudioVBox/GridContainer"]
+margin_left = 69.0
+margin_right = 134.0
+margin_bottom = 15.0
+rect_min_size = Vector2( 65, 0 )
+custom_colors/font_color = Color( 0.917647, 0.164706, 0.32549, 1 )
+custom_fonts/font = SubResource( 29 )
+text = "SFX"
+align = 1
+
+[node name="musicSlider" type="HSlider" parent="CanvasLayer/Control/Settings/VBoxContainer/AudioVBox/GridContainer"]
+margin_top = 19.0
+margin_right = 65.0
+margin_bottom = 33.0
+rect_min_size = Vector2( 60, 0 )
+custom_icons/grabber_disabled = ExtResource( 17 )
+custom_icons/grabber_highlight = ExtResource( 21 )
+custom_icons/grabber = ExtResource( 21 )
+custom_styles/slider = SubResource( 18 )
+custom_styles/grabber_area_highlight = SubResource( 19 )
+custom_styles/grabber_area = SubResource( 20 )
+max_value = 1.0
+step = 0.01
+
+[node name="sfxSlider" type="HSlider" parent="CanvasLayer/Control/Settings/VBoxContainer/AudioVBox/GridContainer"]
+margin_left = 69.0
+margin_top = 19.0
+margin_right = 134.0
+margin_bottom = 33.0
+rect_min_size = Vector2( 40, 0 )
+custom_icons/grabber_disabled = ExtResource( 17 )
+custom_icons/grabber_highlight = ExtResource( 21 )
+custom_icons/grabber = ExtResource( 21 )
+custom_styles/slider = SubResource( 18 )
+custom_styles/grabber_area_highlight = SubResource( 19 )
+custom_styles/grabber_area = SubResource( 20 )
+max_value = 1.0
+step = 0.01
+
+[node name="DifficultyVBox" type="VBoxContainer" parent="CanvasLayer/Control/Settings/VBoxContainer"]
+margin_top = 121.0
+margin_right = 134.0
+margin_bottom = 266.0
+
+[node name="Difficulty" type="TextureRect" parent="CanvasLayer/Control/Settings/VBoxContainer/DifficultyVBox"]
+margin_right = 134.0
+margin_bottom = 14.0
+texture = ExtResource( 15 )
+
+[node name="HealthHBox" type="HBoxContainer" parent="CanvasLayer/Control/Settings/VBoxContainer/DifficultyVBox"]
+margin_top = 18.0
+margin_right = 134.0
+margin_bottom = 33.0
+
+[node name="Health" type="Label" parent="CanvasLayer/Control/Settings/VBoxContainer/DifficultyVBox/HealthHBox"]
+margin_right = 87.0
+margin_bottom = 15.0
+rect_min_size = Vector2( 87, 0 )
+custom_colors/font_color = Color( 0.917647, 0.164706, 0.32549, 1 )
+custom_fonts/font = SubResource( 29 )
+text = "Health"
+
+[node name="hpSlider" type="HSlider" parent="CanvasLayer/Control/Settings/VBoxContainer/DifficultyVBox/HealthHBox"]
+margin_left = 91.0
+margin_right = 131.0
+margin_bottom = 14.0
+rect_min_size = Vector2( 40, 0 )
+custom_icons/grabber_disabled = ExtResource( 17 )
+custom_icons/grabber_highlight = ExtResource( 21 )
+custom_icons/grabber = ExtResource( 21 )
+custom_styles/slider = SubResource( 18 )
+custom_styles/grabber_area_highlight = SubResource( 19 )
+custom_styles/grabber_area = SubResource( 20 )
+min_value = 0.5
+max_value = 1.0
+step = 0.1
+value = 1.0
+
+[node name="DamageHBox" type="HBoxContainer" parent="CanvasLayer/Control/Settings/VBoxContainer/DifficultyVBox"]
+margin_top = 37.0
+margin_right = 134.0
+margin_bottom = 52.0
+
+[node name="Damage" type="Label" parent="CanvasLayer/Control/Settings/VBoxContainer/DifficultyVBox/DamageHBox"]
+margin_right = 87.0
+margin_bottom = 15.0
+rect_min_size = Vector2( 87, 0 )
+custom_colors/font_color = Color( 0.917647, 0.164706, 0.32549, 1 )
+custom_fonts/font = SubResource( 29 )
+text = "Damage"
+
+[node name="dmgSlider" type="HSlider" parent="CanvasLayer/Control/Settings/VBoxContainer/DifficultyVBox/DamageHBox"]
+margin_left = 91.0
+margin_right = 131.0
+margin_bottom = 14.0
+rect_min_size = Vector2( 40, 0 )
+custom_icons/grabber_disabled = ExtResource( 17 )
+custom_icons/grabber_highlight = ExtResource( 21 )
+custom_icons/grabber = ExtResource( 21 )
+custom_styles/slider = SubResource( 18 )
+custom_styles/grabber_area_highlight = SubResource( 19 )
+custom_styles/grabber_area = SubResource( 20 )
+min_value = 1.0
+max_value = 3.0
+value = 1.0
+
+[node name="SpeedHBox" type="HBoxContainer" parent="CanvasLayer/Control/Settings/VBoxContainer/DifficultyVBox"]
+margin_top = 56.0
+margin_right = 134.0
+margin_bottom = 71.0
+
+[node name="Speed" type="Label" parent="CanvasLayer/Control/Settings/VBoxContainer/DifficultyVBox/SpeedHBox"]
+margin_right = 87.0
+margin_bottom = 15.0
+rect_min_size = Vector2( 87, 0 )
+custom_colors/font_color = Color( 0.917647, 0.164706, 0.32549, 1 )
+custom_fonts/font = SubResource( 29 )
+text = "Speed"
+
+[node name="speedSlider" type="HSlider" parent="CanvasLayer/Control/Settings/VBoxContainer/DifficultyVBox/SpeedHBox"]
+margin_left = 91.0
+margin_right = 131.0
+margin_bottom = 14.0
+rect_min_size = Vector2( 40, 0 )
+custom_icons/grabber_disabled = ExtResource( 17 )
+custom_icons/grabber_highlight = ExtResource( 21 )
+custom_icons/grabber = ExtResource( 21 )
+custom_styles/slider = SubResource( 18 )
+custom_styles/grabber_area_highlight = SubResource( 19 )
+custom_styles/grabber_area = SubResource( 20 )
+min_value = 0.5
+max_value = 1.5
+step = 0.5
+value = 1.0
+
+[node name="AttackSpeedHBox" type="HBoxContainer" parent="CanvasLayer/Control/Settings/VBoxContainer/DifficultyVBox"]
+margin_top = 75.0
+margin_right = 134.0
+margin_bottom = 90.0
+
+[node name="AttackSpeed" type="Label" parent="CanvasLayer/Control/Settings/VBoxContainer/DifficultyVBox/AttackSpeedHBox"]
+margin_right = 87.0
+margin_bottom = 15.0
+rect_min_size = Vector2( 87, 0 )
+custom_colors/font_color = Color( 0.917647, 0.164706, 0.32549, 1 )
+custom_fonts/font = SubResource( 29 )
+text = "AttackSpeed"
+
+[node name="AttackSpeedSlider" type="HSlider" parent="CanvasLayer/Control/Settings/VBoxContainer/DifficultyVBox/AttackSpeedHBox"]
+margin_left = 131.0
+margin_right = 171.0
+margin_bottom = 14.0
+rect_min_size = Vector2( 40, 0 )
+rect_scale = Vector2( -1, 1 )
+custom_icons/grabber_disabled = ExtResource( 17 )
+custom_icons/grabber_highlight = ExtResource( 21 )
+custom_icons/grabber = ExtResource( 21 )
+custom_styles/slider = SubResource( 18 )
+custom_styles/grabber_area_highlight = SubResource( 19 )
+custom_styles/grabber_area = SubResource( 20 )
+min_value = 0.5
+max_value = 1.5
+step = 0.5
+value = 1.0
+
+[node name="SpawnrateHBox" type="HBoxContainer" parent="CanvasLayer/Control/Settings/VBoxContainer/DifficultyVBox"]
+margin_top = 94.0
+margin_right = 134.0
+margin_bottom = 109.0
+
+[node name="Spawnrate" type="Label" parent="CanvasLayer/Control/Settings/VBoxContainer/DifficultyVBox/SpawnrateHBox"]
+margin_right = 87.0
+margin_bottom = 15.0
+rect_min_size = Vector2( 87, 0 )
+custom_colors/font_color = Color( 0.917647, 0.164706, 0.32549, 1 )
+custom_fonts/font = SubResource( 29 )
+text = "Spawnrate"
+
+[node name="SpawnrateSlider" type="HSlider" parent="CanvasLayer/Control/Settings/VBoxContainer/DifficultyVBox/SpawnrateHBox"]
+margin_left = 91.0
+margin_right = 131.0
+margin_bottom = 14.0
+rect_min_size = Vector2( 40, 0 )
+custom_icons/grabber_disabled = ExtResource( 17 )
+custom_icons/grabber_highlight = ExtResource( 21 )
+custom_icons/grabber = ExtResource( 21 )
+custom_styles/slider = SubResource( 18 )
+custom_styles/grabber_area_highlight = SubResource( 19 )
+custom_styles/grabber_area = SubResource( 20 )
+min_value = 0.3
+max_value = 0.8
+step = 0.1
+value = 0.5
+
+[node name="ResetValues" type="TextureButton" parent="CanvasLayer/Control/Settings/VBoxContainer/DifficultyVBox"]
+margin_top = 113.0
+margin_right = 134.0
+margin_bottom = 126.0
+rect_min_size = Vector2( 87, 0 )
+texture_normal = ExtResource( 22 )
+texture_pressed = ExtResource( 18 )
+texture_disabled = ExtResource( 20 )
+
+[node name="Crystals" type="HBoxContainer" parent="CanvasLayer/Control/Settings/VBoxContainer/DifficultyVBox"]
+margin_top = 130.0
+margin_right = 134.0
+margin_bottom = 145.0
+
+[node name="Crystals" type="Label" parent="CanvasLayer/Control/Settings/VBoxContainer/DifficultyVBox/Crystals"]
+margin_right = 87.0
+margin_bottom = 15.0
+rect_min_size = Vector2( 87, 0 )
+custom_colors/font_color = Color( 0.917647, 0.164706, 0.32549, 1 )
+custom_fonts/font = SubResource( 29 )
+text = "Crystals"
+
+[node name="CrystalsValue" type="Label" parent="CanvasLayer/Control/Settings/VBoxContainer/DifficultyVBox/Crystals"]
+margin_left = 91.0
+margin_right = 107.0
+margin_bottom = 15.0
+rect_min_size = Vector2( 12, 0 )
+custom_colors/font_color = Color( 0.917647, 0.164706, 0.32549, 1 )
+custom_fonts/font = SubResource( 29 )
+text = "1.0"
+
+[node name="DevConsole" type="ScrollContainer" parent="CanvasLayer/Control"]
+visible = false
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -62.0
+margin_top = -180.0
+margin_right = 343.0
+margin_bottom = 180.0
+scroll_horizontal_enabled = false
+script = ExtResource( 24 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Control/DevConsole"]
+margin_right = 410.0
+margin_bottom = 59.0
+
+[node name="LineEdit" type="LineEdit" parent="CanvasLayer/Control/DevConsole/VBoxContainer"]
+margin_right = 410.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 410, 40 )
+context_menu_enabled = false
+clear_button_enabled = true
+middle_mouse_paste_enabled = false
+selecting_enabled = false
+deselect_on_focus_loss_enabled = false
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/Control/DevConsole/VBoxContainer"]
+margin_top = 44.0
+margin_right = 410.0
+margin_bottom = 59.0
+bbcode_enabled = true
+fit_content_height = true
+scroll_following = true
+
+[node name="Credits" type="ScrollContainer" parent="CanvasLayer/Control"]
+visible = false
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -62.0
+margin_top = -180.0
+margin_right = 69.0
+margin_bottom = -55.0
+rect_scale = Vector2( 3, 3 )
+theme = ExtResource( 13 )
+scroll_horizontal_enabled = false
+
+[node name="SFX" type="VBoxContainer" parent="CanvasLayer/Control/Credits"]
+margin_right = 130.0
+margin_bottom = 77.0
+
+[node name="Music" type="TextureRect" parent="CanvasLayer/Control/Credits/SFX"]
+margin_top = 18.0
+margin_right = 130.0
+margin_bottom = 32.0
+rect_min_size = Vector2( 130, 14 )
+texture = ExtResource( 26 )
+
+[node name="braveEpic" type="RichTextLabel" parent="CanvasLayer/Control/Credits/SFX"]
+margin_top = 36.0
+margin_right = 130.0
+margin_bottom = 76.0
+rect_min_size = Vector2( 130, 40 )
+custom_fonts/normal_font = SubResource( 22 )
+text = "makesoundmusic - brave-epic-
+cinematic
+"
+scroll_active = false
+
+[node name="Pixabay-License2" type="RichTextLabel" parent="CanvasLayer/Control/Credits/SFX"]
+margin_top = 80.0
+margin_right = 130.0
+margin_bottom = 95.0
+rect_min_size = Vector2( 130, 15 )
+custom_colors/default_color = Color( 0, 0.345098, 1, 1 )
+custom_fonts/normal_font = SubResource( 22 )
+bbcode_enabled = true
+bbcode_text = "[url=\"https://pixabay.com/en/service/license-summary/\"]License[/url]"
+text = "License"
+scroll_active = false
+
+[node name="CanvasLayer2" type="CanvasLayer" parent="."]
+layer = 10
+
+[connection signal="animation_finished" from="CanvasLayer/AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
+[connection signal="pressed" from="CanvasLayer/Control/First_Container/Resume" to="." method="_on_Resume_pressed"]
+[connection signal="pressed" from="CanvasLayer/Control/First_Container/Settings" to="." method="_on_Settings_pressed"]
+[connection signal="pressed" from="CanvasLayer/Control/First_Container/Credits" to="." method="_on_Credits_pressed"]
+[connection signal="pressed" from="CanvasLayer/Control/First_Container/Quit" to="." method="_on_Quit_pressed"]
+[connection signal="pressed" from="CanvasLayer/Control/Settings/VBoxContainer/Button" to="." method="_on_Button_pressed"]
+[connection signal="toggled" from="CanvasLayer/Control/Settings/VBoxContainer/HBoxContainer/showFPS" to="." method="_on_showFPS_toggled"]
+[connection signal="value_changed" from="CanvasLayer/Control/Settings/VBoxContainer/AudioVBox/GridContainer/musicSlider" to="CanvasLayer/Control/Settings" method="_on_musicSlider_value_changed"]
+[connection signal="value_changed" from="CanvasLayer/Control/Settings/VBoxContainer/AudioVBox/GridContainer/sfxSlider" to="CanvasLayer/Control/Settings" method="_on_sfxSlider_value_changed"]
+[connection signal="value_changed" from="CanvasLayer/Control/Settings/VBoxContainer/DifficultyVBox/HealthHBox/hpSlider" to="CanvasLayer/Control/Settings" method="_on_hpSlider_value_changed"]
+[connection signal="value_changed" from="CanvasLayer/Control/Settings/VBoxContainer/DifficultyVBox/DamageHBox/dmgSlider" to="CanvasLayer/Control/Settings" method="_on_dmgSlider_value_changed"]
+[connection signal="value_changed" from="CanvasLayer/Control/Settings/VBoxContainer/DifficultyVBox/SpeedHBox/speedSlider" to="CanvasLayer/Control/Settings" method="_on_speedSlider_value_changed"]
+[connection signal="value_changed" from="CanvasLayer/Control/Settings/VBoxContainer/DifficultyVBox/AttackSpeedHBox/AttackSpeedSlider" to="CanvasLayer/Control/Settings" method="_on_AttackSpeedSlider_value_changed"]
+[connection signal="value_changed" from="CanvasLayer/Control/Settings/VBoxContainer/DifficultyVBox/SpawnrateHBox/SpawnrateSlider" to="CanvasLayer/Control/Settings" method="_on_SpawnrateSlider_value_changed"]
+[connection signal="pressed" from="CanvasLayer/Control/Settings/VBoxContainer/DifficultyVBox/ResetValues" to="CanvasLayer/Control/Settings" method="_on_ResetValues_pressed"]
+[connection signal="text_entered" from="CanvasLayer/Control/DevConsole/VBoxContainer/LineEdit" to="CanvasLayer/Control/DevConsole" method="_on_LineEdit_text_entered"]
+[connection signal="meta_clicked" from="CanvasLayer/Control/Credits/SFX/Pixabay-License2" to="." method="_on_PixabayLicense_meta_clicked"]

@@ -1,0 +1,172 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://assets/sprites/ui/background/menu_background.png" type="Texture" id=1]
+[ext_resource path="res://assets/sprites/ui/stats/game_over.png" type="Texture" id=2]
+[ext_resource path="res://assets/resources/fonts/dynamic_font.tres" type="DynamicFont" id=3]
+[ext_resource path="res://assets/sprites/ui/stats/distance.png" type="Texture" id=4]
+[ext_resource path="res://assets/sprites/ui/stats/killed_enemies.png" type="Texture" id=5]
+[ext_resource path="res://scripts/ui/stats/game_over_stats.gd" type="Script" id=6]
+[ext_resource path="res://assets/sprites/ui/stats/stage.png" type="Texture" id=7]
+[ext_resource path="res://assets/sprites/ui/background/menu_background_progress.png" type="Texture" id=8]
+
+[sub_resource type="DynamicFontData" id=17]
+antialiased = false
+font_path = "res://resources/fonts/ThaleahFat.ttf"
+
+[sub_resource type="DynamicFont" id=18]
+font_data = SubResource( 17 )
+
+[node name="Statistics" type="CanvasLayer"]
+pause_mode = 2
+layer = 10
+
+[node name="GameOverStatistics" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -3.0
+margin_bottom = -3.0
+rect_pivot_offset = Vector2( -1222, -291 )
+script = ExtResource( 6 )
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Background" type="NinePatchRect" parent="GameOverStatistics"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -50.0
+margin_top = -75.0
+margin_right = 50.0
+margin_bottom = 75.0
+rect_scale = Vector2( 3, 3 )
+rect_pivot_offset = Vector2( 50, 75 )
+texture = ExtResource( 1 )
+region_rect = Rect2( 0, 0, 48, 48 )
+patch_margin_left = 7
+patch_margin_top = 7
+patch_margin_right = 6
+patch_margin_bottom = 7
+axis_stretch_horizontal = 2
+axis_stretch_vertical = 2
+
+[node name="game_over" type="TextureRect" parent="GameOverStatistics/Background"]
+margin_top = 6.0
+margin_right = 100.0
+margin_bottom = 20.0
+texture = ExtResource( 2 )
+
+[node name="over_progress" type="TextureProgress" parent="GameOverStatistics/Background"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -50.0
+margin_top = -75.0
+margin_right = 50.0
+margin_bottom = 75.0
+max_value = 5.0
+step = 0.001
+value = 5.0
+texture_progress = ExtResource( 8 )
+fill_mode = 6
+nine_patch_stretch = true
+stretch_margin_left = 10
+stretch_margin_top = 10
+stretch_margin_right = 10
+stretch_margin_bottom = 10
+
+[node name="distance_travelled" type="HBoxContainer" parent="GameOverStatistics/Background"]
+margin_top = 25.0
+margin_right = 100.0
+margin_bottom = 40.0
+rect_scale = Vector2( 0.75, 0.75 )
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="placeholder" type="Control" parent="GameOverStatistics/Background/distance_travelled"]
+margin_right = 5.0
+margin_bottom = 15.0
+rect_min_size = Vector2( 5, 2 )
+
+[node name="distance" type="TextureRect" parent="GameOverStatistics/Background/distance_travelled"]
+margin_left = 9.0
+margin_right = 73.0
+margin_bottom = 15.0
+texture = ExtResource( 4 )
+
+[node name="length" type="Label" parent="GameOverStatistics/Background/distance_travelled"]
+margin_left = 77.0
+margin_top = 6.0
+margin_right = 77.0
+margin_bottom = 8.0
+custom_colors/font_color = Color( 0.917647, 0.164706, 0.32549, 1 )
+custom_fonts/font = SubResource( 18 )
+align = 2
+
+[node name="enemies_killed" type="HBoxContainer" parent="GameOverStatistics/Background"]
+margin_top = 40.0
+margin_right = 100.0
+margin_bottom = 55.0
+rect_min_size = Vector2( 100, 15 )
+rect_scale = Vector2( 0.75, 0.75 )
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="placeholder" type="Control" parent="GameOverStatistics/Background/enemies_killed"]
+margin_right = 5.0
+margin_bottom = 15.0
+rect_min_size = Vector2( 5, 2 )
+
+[node name="enemies" type="TextureRect" parent="GameOverStatistics/Background/enemies_killed"]
+margin_left = 9.0
+margin_right = 73.0
+margin_bottom = 15.0
+texture = ExtResource( 5 )
+
+[node name="killed" type="Label" parent="GameOverStatistics/Background/enemies_killed"]
+margin_left = 77.0
+margin_right = 77.0
+margin_bottom = 15.0
+custom_colors/font_color = Color( 0.917647, 0.164706, 0.32549, 1 )
+custom_fonts/font = ExtResource( 3 )
+valign = 2
+
+[node name="reached_stage" type="HBoxContainer" parent="GameOverStatistics/Background"]
+margin_top = 55.0
+margin_right = 100.0
+margin_bottom = 70.0
+rect_min_size = Vector2( 100, 15 )
+rect_scale = Vector2( 0.75, 0.75 )
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="placeholder" type="Control" parent="GameOverStatistics/Background/reached_stage"]
+margin_right = 5.0
+margin_bottom = 15.0
+rect_min_size = Vector2( 5, 2 )
+
+[node name="stage" type="TextureRect" parent="GameOverStatistics/Background/reached_stage"]
+margin_left = 9.0
+margin_right = 73.0
+margin_bottom = 15.0
+texture = ExtResource( 7 )
+
+[node name="reached" type="Label" parent="GameOverStatistics/Background/reached_stage"]
+margin_left = 77.0
+margin_right = 77.0
+margin_bottom = 15.0
+custom_colors/font_color = Color( 0.917647, 0.164706, 0.32549, 1 )
+custom_fonts/font = ExtResource( 3 )
+valign = 2
+
+[node name="Timer" type="Timer" parent="GameOverStatistics"]
+wait_time = 5.0
+one_shot = true
+autostart = true
+
+[connection signal="timeout" from="GameOverStatistics/Timer" to="GameOverStatistics" method="_on_Timer_timeout"]
